@@ -4,7 +4,8 @@
     "description": "Scraper for download Media from Twitter",
     "main": "lib/index.js",
     "scripts": {
-        "build": "tsc --build"
+        "build": "tsc --build",
+        "postinstall": "cd ./node_modules/twitter-downloader && npm run build"
     },
     "repository": {
         "type": "git",
