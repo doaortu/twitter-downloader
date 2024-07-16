@@ -30,8 +30,7 @@ const millsToMinutesAndSeconds = (millis: number) => {
 
 export const TwitterDL = (
     url: string,
-    config?: Config,
-    proxy?: string
+    config?: Partial<Config>,
 ): Promise<Twitter> =>
     new Promise(async (resolve) => {
         const id = url.match(/\/([\d]+)/);
@@ -75,12 +74,13 @@ export const TwitterDL = (
                 "user-agent":
                     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36",
             },
+            signal: config?.signal,
             httpsAgent:
-                (proxy &&
-                    (proxy.startsWith("socks")
-                        ? new SocksProxyAgent(proxy)
-                        : proxy.startsWith("http")
-                        ? new HttpsProxyAgent(proxy)
+                (config?.proxy &&
+                    (config?.proxy.startsWith("socks")
+                        ? new SocksProxyAgent(config?.proxy)
+                        : config?.proxy.startsWith("http")
+                        ? new HttpsProxyAgent(config?.proxy)
                         : undefined)) ||
                 undefined,
         })

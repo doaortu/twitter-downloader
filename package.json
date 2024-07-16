@@ -1,5 +1,5 @@
 {
-    "name": "twitter-downloader",
+    "name": "twitter-downloader-git",
     "version": "1.1.8",
     "description": "Scraper for download Media from Twitter",
     "main": "lib/index.js",
