@@ -99,6 +99,12 @@ export const TwitterDL = (
                             "This tweet contains sensitive content! Please use cookies to avoid errors!",
                     });
                 }
+                if(data.data.tweetResult.result?.reason === 'Suspended') {
+                    return resolve({
+                        status: "error",
+                        message: "This tweet is not available because the sender got suspended"
+                    })
+                }
                 const result =
                     data.data.tweetResult.result.__typename ===
                     "TweetWithVisibilityResults"
